@@ -80,14 +80,14 @@ const ForgotPassword: React.FC = () => {
           });
           router.push("/");
           handleToast(1, msg);
+          window.location.reload();
         } else {
           handleToast(0, msg);
         }
       })
       .catch(() => {
         handleToast(0, "Something went wrong!");
-      })
-      .finally(() => window.location.reload());
+      });
   };
 
   return (
