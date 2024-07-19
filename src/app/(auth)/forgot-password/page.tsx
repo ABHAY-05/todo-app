@@ -35,7 +35,7 @@ const ForgotPassword: React.FC = () => {
 
     const { code, msg } = await handleForgotPassword(
       userName,
-      email,
+      email.toLowerCase(),
       securityAnswer,
     );
 
