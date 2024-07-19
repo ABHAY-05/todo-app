@@ -96,7 +96,7 @@ const ForgotPassword: React.FC = () => {
         {step === "verify" ? (
           <form
             onSubmit={handleVerification}
-            className="flex w-full max-w-md flex-col items-center gap-4 rounded-lg bg-[#1c1c1c] p-6 shadow-md"
+            className="flex w-full max-w-md flex-col items-center gap-4 rounded-lg bg-[#1c1c1c] p-6 text-center shadow-md"
           >
             <h1 className="text-2xl font-bold">Verify Your Identity</h1>
             <input
@@ -133,7 +133,7 @@ const ForgotPassword: React.FC = () => {
         ) : (
           <form
             onSubmit={handlePasswordReset}
-            className="flex w-full max-w-md flex-col items-center gap-4 rounded-lg bg-[#1c1c1c] p-6 shadow-md"
+            className="flex w-full max-w-md flex-col items-center gap-4 rounded-lg bg-[#1c1c1c] p-6 text-center shadow-md"
           >
             <h1 className="text-2xl font-bold">Reset Your Password</h1>
             <input
