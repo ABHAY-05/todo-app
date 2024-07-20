@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 const Completed: React.FC = () => {
   const completed = useSelector((state: RootState) => state.app.completed);
 
-  return <Tasks title="All Tasks" tasks={completed} />;
+  return <Tasks title="Completed Tasks" tasks={completed} />;
 };
 
 export default Completed;

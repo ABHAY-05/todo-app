@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 const InCompleted: React.FC = () => {
   const inCompleted = useSelector((state: RootState) => state.app.inCompleted);
 
-  return <Tasks title="All Tasks" tasks={inCompleted} />;
+  return <Tasks title="Incompleted Tasks" tasks={inCompleted} />;
 };
 
 export default InCompleted;
