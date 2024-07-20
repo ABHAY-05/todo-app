@@ -12,6 +12,7 @@ import { setIsLogin, setUserName } from "@/actions/userActions";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
 import { AppDispatch } from "@/store/store";
+import "@/styles/Auth.css";
 
 const ForgotPassword: React.FC = () => {
   const [step, setStep] = useState<"verify" | "reset">("verify");
@@ -50,10 +51,7 @@ const ForgotPassword: React.FC = () => {
   const handlePasswordReset = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const formData = new FormData(e.currentTarget);
-
-    const newPassword = formData.get("newPassword") as string;
-    const confirmNewPassword = formData.get("confirmNewPassword") as string;
+    const { newPassword, confirmNewPassword } = password;
 
     const passwordRegex =
       /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>[\]\/\\`~'_;+-=])[A-Za-z\d!@#$%^&*(),.?":{}|<>[\]\/\\`~'_;+-=]{8,}$/;
@@ -96,36 +94,54 @@ const ForgotPassword: React.FC = () => {
         {step === "verify" ? (
           <form
             onSubmit={handleVerification}
-            className="flex w-full max-w-md flex-col items-center gap-4 rounded-lg bg-[#1c1c1c] p-6 text-center shadow-md"
+            className="form-container flex flex-col items-center gap-4 rounded-lg bg-[#1c1c1c] p-6 shadow-md"
           >
-            <h1 className="text-2xl font-bold">Verify Your Identity</h1>
-            <input
-              type="text"
-              name="username"
-              placeholder="Enter your username"
-              autoComplete="on"
-              required
-              className="w-full rounded border border-[#3d3d3d] bg-[#2e2e2e] p-3 placeholder-[#a1a1a1] focus:border-[#00A3FF] focus:outline-none"
-            />
-            <input
-              type="email"
-              name="email"
-              placeholder="Enter your email address"
-              autoComplete="on"
-              required
-              className="w-full rounded border border-[#3d3d3d] bg-[#2e2e2e] p-3 placeholder-[#a1a1a1] focus:border-[#00A3FF] focus:outline-none"
-            />
-            <input
-              type="text"
-              name="securityAnswer"
-              placeholder="Answer to your security question"
-              autoComplete="on"
-              required
-              className="w-full rounded border border-[#3d3d3d] bg-[#2e2e2e] p-3 placeholder-[#a1a1a1] focus:border-[#00A3FF] focus:outline-none"
-            />
+            <h1 className="form-header">Verify Your Identity</h1>
+            <div className="form-group">
+              <input
+                type="text"
+                name="username"
+                placeholder=" "
+                autoComplete="on"
+                id="username"
+                required
+                className="form-control"
+              />
+              <label htmlFor="username" className="form-label">
+                Enter your username
+              </label>
+            </div>
+            <div className="form-group">
+              <input
+                type="email"
+                name="email"
+                id="email"
+                placeholder=" "
+                autoComplete="on"
+                required
+                className="form-control"
+              />
+              <label htmlFor="email" className="form-label">
+                Enter your email address
+              </label>
+            </div>
+            <div className="form-group">
+              <input
+                type="text"
+                name="securityAnswer"
+                id="securityAnswer"
+                placeholder=" "
+                autoComplete="on"
+                required
+                className="form-control"
+              />
+              <label htmlFor="securityAnswer" className="form-label">
+                Answer to your security question
+              </label>
+            </div>
             <button
               type="submit"
-              className="w-full rounded bg-blue-500 py-3 font-bold hover:bg-blue-700"
+              className="form-button bg-blue-500 text-white hover:bg-blue-700"
             >
               Verify
             </button>
@@ -133,42 +149,54 @@ const ForgotPassword: React.FC = () => {
         ) : (
           <form
             onSubmit={handlePasswordReset}
-            className="flex w-full max-w-md flex-col items-center gap-4 rounded-lg bg-[#1c1c1c] p-6 text-center shadow-md"
+            className="form-container flex flex-col items-center gap-4 rounded-lg bg-[#1c1c1c] p-6 shadow-md"
           >
-            <h1 className="text-2xl font-bold">Reset Your Password</h1>
-            <input
-              type="password"
-              name="newPassword"
-              value={password.newPassword}
-              autoComplete="new-password"
-              placeholder="Enter your new password"
-              required
-              onChange={(e) => {
-                setPassword({
-                  ...password,
-                  newPassword: e.target.value,
-                });
-              }}
-              className="w-full rounded border border-[#3d3d3d] bg-[#2e2e2e] p-3 placeholder-[#a1a1a1] focus:border-[#00A3FF] focus:outline-none"
-            />
-            <input
-              type="password"
-              name="confirmNewPassword"
-              value={password.confirmNewPassword}
-              autoComplete="new-password"
-              placeholder="Confirm your new password"
-              required
-              onChange={(e) => {
-                setPassword({
-                  ...password,
-                  confirmNewPassword: e.target.value,
-                });
-              }}
-              className="w-full rounded border border-[#3d3d3d] bg-[#2e2e2e] p-3 placeholder-[#a1a1a1] focus:border-[#00A3FF] focus:outline-none"
-            />
+            <h1 className="form-header">Reset Your Password</h1>
+            <div className="form-group">
+              <input
+                type="password"
+                name="newPassword"
+                value={password.newPassword}
+                autoComplete="new-password"
+                id="newPassword"
+                placeholder=" "
+                required
+                onChange={(e) => {
+                  setPassword({
+                    ...password,
+                    newPassword: e.target.value,
+                  });
+                }}
+                className="form-control"
+              />
+              <label htmlFor="newPassword" className="form-label">
+                Enter your new password
+              </label>
+            </div>
+            <div className="form-group">
+              <input
+                type="password"
+                name="confirmNewPassword"
+                id="confirmNewPassword"
+                value={password.confirmNewPassword}
+                autoComplete="new-password"
+                placeholder=" "
+                required
+                onChange={(e) => {
+                  setPassword({
+                    ...password,
+                    confirmNewPassword: e.target.value,
+                  });
+                }}
+                className="form-control"
+              />
+              <label htmlFor="confirmNewPassword" className="form-label">
+                Confirm your new password
+              </label>
+            </div>
             <button
               type="submit"
-              className="w-full rounded bg-green-500 py-3 font-bold hover:bg-green-700"
+              className="form-button bg-green-500 text-white hover:bg-green-700"
             >
               Reset Password
             </button>

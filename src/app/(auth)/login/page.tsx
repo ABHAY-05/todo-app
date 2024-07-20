@@ -9,6 +9,7 @@ import Authenticate from "@/server/auth/authenticate";
 import { setIsLogin, setUserName } from "@/actions/userActions";
 import handleToast from "@/utils/toast";
 import Link from "next/link";
+import "@/styles/Auth.css";
 
 const Login: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -46,41 +47,48 @@ const Login: React.FC = () => {
       <div className="flex h-full flex-col items-center justify-center px-4 text-[#f8f8f8]">
         <form
           onSubmit={handleForm}
-          className="flex w-full max-w-md flex-col items-center gap-4 rounded-lg bg-[#1c1c1c] p-6 shadow-md"
+          className="form-container flex flex-col items-center gap-4 rounded-lg bg-[#1c1c1c] p-6 shadow-md"
         >
-          <h1 className="text-center text-2xl font-bold">Login to TodoApp</h1>
-          <input
-            type="email"
-            name="email"
-            id="email"
-            required
-            autoComplete="on"
-            placeholder="Enter your email address"
-            className="w-full rounded border border-[#3d3d3d] bg-[#2e2e2e] p-3 placeholder-[#a1a1a1] focus:border-[#00A3FF] focus:outline-none"
-          />
-          <input
-            type="password"
-            name="password"
-            id="password"
-            required
-            placeholder="Enter your password"
-            className="w-full rounded border border-[#3d3d3d] bg-[#2e2e2e] p-3 placeholder-[#a1a1a1] focus:border-[#00A3FF] focus:outline-none"
-          />
+          <h1 className="form-header">Login to TodoApp</h1>
+          <div className="form-group">
+            <input
+              type="email"
+              name="email"
+              id="email"
+              required
+              autoComplete="on"
+              placeholder=" "
+              className="form-control"
+            />
+            <label htmlFor="email" className="form-label">
+              Enter your email address
+            </label>
+          </div>
+          <div className="form-group">
+            <input
+              type="password"
+              name="password"
+              id="password"
+              required
+              placeholder=" "
+              className="form-control"
+            />
+            <label htmlFor="password" className="form-label">
+              Enter your password
+            </label>
+          </div>
           <button
             type="submit"
-            className="w-full rounded bg-blue-500 py-3 font-bold hover:bg-blue-700"
+            className="form-button bg-blue-500 text-white hover:bg-blue-700"
           >
             Login
           </button>
-          <Link
-            href="/forgot-password"
-            className="text-sm text-blue-500 underline"
-          >
+          <Link href="/forgot-password" className="link">
             Forgot your password?
           </Link>
           <Link
             href="/signup"
-            className="mt-4 w-full rounded bg-green-500 py-3 text-center font-bold hover:bg-green-700"
+            className="form-button mt-4 bg-green-500 text-center text-white hover:bg-green-700"
           >
             Don't have an account yet? Sign Up
           </Link>
