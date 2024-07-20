@@ -41,7 +41,7 @@ const Sidebar: React.FC = () => {
   return (
     <>
       <nav
-        className={`sidebar relative flex w-[15rem] flex-col justify-between rounded-[1rem] border-2 border-solid border-[#f9f9f914] bg-[#212121] text-[#6c7983] max-md:fixed max-md:z-[100] max-md:h-[calc(100vh-2rem)] ${ismenu ? "max-md:-translate-x-[107%]" : "max-md:translate-x-0"}`}
+        className={`sidebar relative flex w-[15rem] flex-col justify-between rounded-[1rem] border-2 border-solid border-[#f9f9f914] bg-[#212121] text-[#6c7983] max-md:fixed max-md:z-[100] max-md:h-[calc(100vh-2rem)] ${ismenu ? "max-md:translate-x-0" : "max-md:-translate-x-[107%]"}`}
       >
         <button
           className="nav-icon absolute -right-[69px] top-[1.8rem] m-[1.5rem] hidden rounded-br-[1rem] rounded-tr-[1rem] border-y-2 border-l-0 border-r-2 border-solid border-[#f9f9ff14] bg-[#212121] px-[0.9rem] py-[0.8rem] max-md:block"
@@ -49,7 +49,7 @@ const Sidebar: React.FC = () => {
             dispatch(toggleMenu(!ismenu));
           }}
         >
-          {ismenu ? bars : arrowLeft}
+          {ismenu ? arrowLeft : bars}
         </button>
         <div className="profile relative m-[1.5rem] flex cursor-pointer items-center rounded-[1rem] px-[0.8rem] py-[1rem] font-[500] text-[#f8f8f8]">
           <div className="profile-overlay absolute left-0 top-0 z-0 h-full w-full rounded-[1rem] border-2 border-solid border-[#f9f9f914] bg-[#181818] opacity-[0.2]"></div>

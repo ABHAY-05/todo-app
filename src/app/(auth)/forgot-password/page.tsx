@@ -21,6 +21,7 @@ const ForgotPassword: React.FC = () => {
     newPassword: string;
     confirmNewPassword: string;
   }>({ newPassword: "", confirmNewPassword: "" });
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
@@ -28,6 +29,7 @@ const ForgotPassword: React.FC = () => {
   const handleVerification = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    setIsLoading(true);
     const formData = new FormData(e.currentTarget);
 
     const userName = formData.get("username") as string;
@@ -40,6 +42,7 @@ const ForgotPassword: React.FC = () => {
       securityAnswer,
     );
 
+    setIsLoading(false);
     if (code === 1) {
       setUsername(userName);
       setStep("reset");
@@ -51,17 +54,20 @@ const ForgotPassword: React.FC = () => {
   const handlePasswordReset = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    setIsLoading(true);
     const { newPassword, confirmNewPassword } = password;
 
     const passwordRegex =
       /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>[\]\/\\`~'_;+-=])[A-Za-z\d!@#$%^&*(),.?":{}|<>[\]\/\\`~'_;+-=]{8,}$/;
 
     if (newPassword !== confirmNewPassword) {
+      setIsLoading(false);
       handleToast(0, "Passwords do not match!");
       return;
     }
 
     if (!passwordRegex.test(newPassword)) {
+      setIsLoading(false);
       handleToast(
         0,
         "Password must be at least 8 characters long and include at least one letter, one number and one special character!",
@@ -85,7 +91,9 @@ const ForgotPassword: React.FC = () => {
       })
       .catch(() => {
         handleToast(0, "Something went wrong!");
-      });
+        setIsLoading(false);
+      })
+      .finally(() => setIsLoading(false));
   };
 
   return (
@@ -141,7 +149,8 @@ const ForgotPassword: React.FC = () => {
             </div>
             <button
               type="submit"
-              className="form-button bg-blue-500 text-white hover:bg-blue-700"
+              disabled={isLoading}
+              className={`form-button bg-blue-500 text-white ${isLoading ? "opacity-50" : "opacity-100 hover:bg-blue-700"}`}
             >
               Verify
             </button>
@@ -196,7 +205,8 @@ const ForgotPassword: React.FC = () => {
             </div>
             <button
               type="submit"
-              className="form-button bg-green-500 text-white hover:bg-green-700"
+              disabled={isLoading}
+              className={`form-button bg-green-500 text-white ${isLoading ? "opacity-50" : "opacity-100 hover:bg-green-700"}`}
             >
               Reset Password
             </button>

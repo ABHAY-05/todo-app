@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent } from "react";
+import { FormEvent, useState } from "react";
 import handleSignUp from "@/server/auth/signup";
 import Authenticate from "@/server/auth/authenticate";
 import { useDispatch } from "react-redux";
@@ -14,10 +14,12 @@ import "@/styles/Auth.css";
 const Signup: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const handleForm = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    setIsLoading(true);
     const formData = new FormData(e.currentTarget);
 
     const userName = formData.get("userName") as string;
@@ -31,11 +33,13 @@ const Signup: React.FC = () => {
       /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>[\]\/\\`~'_;+-=])[A-Za-z\d!@#$%^&*(),.?":{}|<>[\]\/\\`~'_;+-=]{8,}$/;
 
     if (!emailRegex.test(email)) {
+      setIsLoading(false);
       handleToast(0, "Invalid email format!");
       return;
     }
 
     if (!passwordRegex.test(password)) {
+      setIsLoading(false);
       handleToast(
         0,
         "Password must be at least 8 characters long and include at least one letter, one number and one special character!",
@@ -44,6 +48,7 @@ const Signup: React.FC = () => {
     }
 
     if (password !== confirmPassword) {
+      setIsLoading(false);
       handleToast(0, "Passwords do not match!");
       return;
     }
@@ -69,7 +74,9 @@ const Signup: React.FC = () => {
       })
       .catch(() => {
         handleToast(0, "Something went wrong!");
-      });
+        setIsLoading(false);
+      })
+      .finally(() => setIsLoading(false));
   };
 
   return (
@@ -150,7 +157,8 @@ const Signup: React.FC = () => {
           </div>
           <button
             type="submit"
-            className="form-button bg-green-500 text-white hover:bg-green-700"
+            disabled={isLoading}
+            className={`form-button bg-green-500 text-white ${isLoading ? "opacity-50" : "opacity-100 hover:bg-green-700"}`}
           >
             Sign Up
           </button>

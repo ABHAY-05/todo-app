@@ -3,7 +3,7 @@
 import { AppDispatch } from "@/store/store";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
-import { FormEvent } from "react";
+import { FormEvent, useState } from "react";
 import handleLogin from "@/server/auth/login";
 import Authenticate from "@/server/auth/authenticate";
 import { setIsLogin, setUserName } from "@/actions/userActions";
@@ -14,10 +14,12 @@ import "@/styles/Auth.css";
 const Login: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const handleForm = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    setIsLoading(true);
     const formData = new FormData(e.currentTarget);
 
     const email = formData.get("email") as string;
@@ -39,7 +41,9 @@ const Login: React.FC = () => {
       })
       .catch(() => {
         handleToast(0, "Something went wrong!");
-      });
+        setIsLoading(false);
+      })
+      .finally(() => setIsLoading(false));
   };
 
   return (
@@ -79,7 +83,8 @@ const Login: React.FC = () => {
           </div>
           <button
             type="submit"
-            className="form-button bg-blue-500 text-white hover:bg-blue-700"
+            disabled={isLoading}
+            className={`form-button bg-blue-500 text-white ${isLoading ? "opacity-50" : "opacity-100 hover:bg-blue-700"}`}
           >
             Login
           </button>
