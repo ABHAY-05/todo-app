@@ -1,7 +1,7 @@
 import toast from "react-hot-toast";
 
-const handleToast = (type: Number, msg: string) => {
-  switch (type) {
+const handleToast = (code: Number, msg: string) => {
+  switch (code) {
     case 1:
       toast.success(msg);
       break;

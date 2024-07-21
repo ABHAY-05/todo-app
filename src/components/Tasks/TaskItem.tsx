@@ -48,10 +48,10 @@ const TaskItem: React.FC<Props> = ({
               dispatch(setCompleted(completed));
               dispatch(setImportant(important));
               dispatch(setInCompleted(inCompleted));
+              handleToast(code, msg);
             },
           );
         }
-        handleToast(code, msg);
       })
       .catch((err) => {
         console.error(err.msg);
@@ -69,10 +69,10 @@ const TaskItem: React.FC<Props> = ({
               dispatch(setCompleted(completed));
               dispatch(setImportant(important));
               dispatch(setInCompleted(inCompleted));
+              handleToast(code, msg);
             },
           );
         }
-        handleToast(code, msg);
       })
       .catch((err) => {
         console.error(err.msg);
@@ -90,10 +90,10 @@ const TaskItem: React.FC<Props> = ({
               dispatch(setCompleted(completed));
               dispatch(setImportant(important));
               dispatch(setInCompleted(inCompleted));
+              handleToast(code, msg);
             },
           );
         }
-        handleToast(code, msg);
       })
       .catch((err) => {
         console.error(err.msg);

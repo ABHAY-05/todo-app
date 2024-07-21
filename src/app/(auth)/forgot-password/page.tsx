@@ -91,7 +91,6 @@ const ForgotPassword: React.FC = () => {
       })
       .catch(() => {
         handleToast(0, "Something went wrong!");
-        setIsLoading(false);
       })
       .finally(() => setIsLoading(false));
   };

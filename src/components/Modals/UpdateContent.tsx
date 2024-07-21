@@ -52,10 +52,10 @@ const UpdateContent: React.FC<{ task: Tasks }> = ({ task }) => {
               dispatch(setImportant(important));
               dispatch(setInCompleted(inCompleted));
               dispatch(toggleEditModal(!editModal));
+              handleToast(code, msg);
             },
           );
         }
-        handleToast(code, msg);
       })
       .catch((err) => {
         console.error(err.msg);

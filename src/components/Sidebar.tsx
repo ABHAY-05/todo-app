@@ -28,6 +28,7 @@ const Sidebar: React.FC = () => {
         dispatch(setIsLogin(false));
         dispatch(setUserName(""));
         handleToast(1, "Logged out successfully!");
+        router.push("/");
       })
       .catch(() => {
         handleToast(0, "Something went wrong!");

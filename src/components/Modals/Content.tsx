@@ -48,10 +48,10 @@ const Content: React.FC = () => {
               dispatch(setImportant(important));
               dispatch(setInCompleted(inCompleted));
               dispatch(toggleModal(!modal));
+              handleToast(code, msg);
             },
           );
         }
-        handleToast(code, msg);
       })
       .catch((err) => {
         console.error(err.msg);
