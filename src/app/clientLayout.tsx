@@ -40,9 +40,7 @@ const ClientLayout: React.FC<{ children: React.ReactNode }> = ({
           console.error(error.msg);
         });
 
-      if (isAuthRoute) {
-        router.push("/tasks");
-      } else if (pathname === "/") {
+      if (isAuthRoute || pathname === "/") {
         router.push("/tasks");
       }
     } else if (!isAuthRoute) {

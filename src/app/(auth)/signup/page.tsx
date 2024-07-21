@@ -64,9 +64,10 @@ const Signup: React.FC = () => {
           Authenticate().then(({ userName, isAuthenticated }) => {
             dispatch(setIsLogin(isAuthenticated));
             dispatch(setUserName(userName));
+
+            router.push("/tasks");
+            handleToast(1, msg);
           });
-          router.push("/tasks");
-          handleToast(1, msg);
         } else {
           handleToast(0, msg);
         }
