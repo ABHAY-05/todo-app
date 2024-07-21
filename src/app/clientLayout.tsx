@@ -35,14 +35,14 @@ const ClientLayout: React.FC<{ children: React.ReactNode }> = ({
           dispatch(setCompleted(completed));
           dispatch(setImportant(important));
           dispatch(setInCompleted(inCompleted));
+
+          if (isAuthRoute || pathname === "/") {
+            router.push("/tasks");
+          }
         })
         .catch((error) => {
           console.error(error.msg);
         });
-
-      if (isAuthRoute || pathname === "/") {
-        router.push("/tasks");
-      }
     } else if (!isAuthRoute) {
       router.push("/");
     }
