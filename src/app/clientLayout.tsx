@@ -54,7 +54,7 @@ const ClientLayout: React.FC<{ children: React.ReactNode }> = ({
   return (
     <div className="global flex h-full gap-[2.5rem] p-[2.5rem] max-md:gap-[1rem] max-md:p-[1rem]">
       <Toaster position="top-center" reverseOrder={false} />
-      {isLoading ? (
+      {isLoading && pathname === "/" ? (
         <div className="flex h-full w-full items-center justify-center">
           <div className="loader"></div>
         </div>
