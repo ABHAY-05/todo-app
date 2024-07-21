@@ -9,7 +9,7 @@ const Home: React.FC = () => {
   const isLogin = useSelector((state: RootState) => state.user.isLogin);
 
   const pathname = usePathname();
-  const isAuthRoute = ["/login", "/signup", "/forgot-password"].includes(
+  const isAuthRoute = ["/login", "/signup", "/forgot-password", "/"].includes(
     pathname,
   );
 
