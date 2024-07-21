@@ -24,7 +24,7 @@ const ClientLayout: React.FC<{ children: React.ReactNode }> = ({
   const pathname = usePathname();
   const router = useRouter();
 
-  const authRoutes = ["/login", "/signup", "/forgot-password"];
+  const authRoutes = ["/login", "/signup", "/forgot-password", "/"];
   const isAuthRoute = authRoutes.includes(pathname);
 
   useEffect(() => {
@@ -41,12 +41,10 @@ const ClientLayout: React.FC<{ children: React.ReactNode }> = ({
         });
 
       if (isAuthRoute) {
-        router.push("/");
+        router.push("/tasks");
       }
-    } else {
-      if (!isAuthRoute) {
-        router.push("/");
-      }
+    } else if (!isAuthRoute) {
+      router.push("/");
     }
   });
 

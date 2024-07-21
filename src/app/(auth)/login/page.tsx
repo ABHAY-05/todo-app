@@ -32,9 +32,8 @@ const Login: React.FC = () => {
             dispatch(setIsLogin(isAuthenticated));
             dispatch(setUserName(userName));
           });
-          router.push("/");
+          router.push("/tasks");
           handleToast(1, msg);
-          window.location.reload();
         } else {
           handleToast(0, msg);
         }
