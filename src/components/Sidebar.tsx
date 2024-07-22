@@ -35,10 +35,6 @@ const Sidebar: React.FC = () => {
       });
   };
 
-  const handleClick = (link: string) => {
-    router.push(link);
-  };
-
   return (
     <>
       <nav
