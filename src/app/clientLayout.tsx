@@ -20,7 +20,7 @@ const ClientLayout: React.FC<{ children: React.ReactNode }> = ({
   const dispatch = useDispatch<AppDispatch>();
   const isLogin = useSelector((state: RootState) => state.user.isLogin);
   const userName = useSelector((state: RootState) => state.user.userName);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const pathname = usePathname();
   const router = useRouter();
@@ -30,7 +30,6 @@ const ClientLayout: React.FC<{ children: React.ReactNode }> = ({
 
   useEffect(() => {
     if (isLogin) {
-      setIsLoading(true);
       fetchTasks(userName)
         .then(({ tasks, completed, important, inCompleted }) => {
           dispatch(setTasks(tasks));
@@ -47,6 +46,7 @@ const ClientLayout: React.FC<{ children: React.ReactNode }> = ({
         })
         .finally(() => setIsLoading(false));
     } else if (!isAuthRoute) {
+      setIsLoading(false);
       router.push("/");
     }
   }, [pathname]);

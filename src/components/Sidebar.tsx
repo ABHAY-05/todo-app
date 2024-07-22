@@ -70,20 +70,16 @@ const Sidebar: React.FC = () => {
           {menu.map((item) => {
             const link = item.link;
             return (
-              <li
+              <Link
+                href={link}
                 key={item.id}
                 className={`nav-item relative mx-0 my-[0.3rem] grid cursor-pointer grid-cols-[40px,1fr] items-center pb-[0.9rem] pl-[2.1rem] pr-[1rem] pt-[0.8rem] ${pathname === link ? "active" : ""}`}
-                onClick={() => {
-                  handleClick(link);
-                }}
               >
                 <div className="nav-icon flex items-center text-[#f9f9f959]">
                   {item.icon}
                 </div>
-                <Link href={link} className="nav-link font-[500]">
-                  {item.title}
-                </Link>
-              </li>
+                <div className="nav-link font-[500]">{item.title}</div>
+              </Link>
             );
           })}
         </ul>
